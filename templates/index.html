@@ -34,7 +34,7 @@
             sohbet.innerHTML += "<div class='kullanici'>Sen: " + mesaj + "</div>";
             document.getElementById("mesaj").value = "";
             
-            fetch("/mesaj", {
+            fetch("https://heymen-ai.onrender.com/mesaj", {
                 method: "POST",
                 headers: {"Content-Type": "application/json"},
                 body: JSON.stringify({mesaj: mesaj})
