@@ -24,7 +24,7 @@ def index():
 
 @app.route("/mesaj", methods=["POST"])
 def mesaj():
-  data = request.json
+    data = request.json
     kullanici_mesaji = data.get("mesaj", "")
     
     gecmis = hafiza_yukle()
@@ -50,14 +50,9 @@ def mesaj():
             gecmis.append({"role": "model", "parts": [{"text": bot_cevabi}]})
             hafiza_kaydet(gecmis)
             
-            return jsonify({"cevapi": bot_cevabi})
+            return jsonify({"cevap": bot_cevabi})
     except Exception as e:
-        return jsonify({"cevapi": f"Hata: {str(e)}"})
-    gecmis.append({"role": "model", "parts": [{"text": bot_cevabi}]})
-    hafiza_kaydet(gecmis)
-    return jsonify({"cevap": bot_cevabi})
-
-import os
+        return jsonify({"cevap": f"Hata: {str(e)}"})
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
