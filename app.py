@@ -26,8 +26,10 @@ def index():
 def mesaj():
   data = request.json
     kullanici_mesaji = data.get("mesaj", "")
+    
     gecmis = hafiza_yukle()
     gecmis.append({"role": "user", "parts": [{"text": kullanici_mesaji}]})
+    
     payload = json.dumps({"contents": gecmis}).encode("utf-8")
     
     api_key = os.environ.get("GEMINI_API_KEY")
@@ -39,12 +41,18 @@ def mesaj():
     }
     
     req = urllib.request.Request(url, data=payload, headers=headers)
+    
     try:
         with urllib.request.urlopen(req) as response:
             result = json.loads(response.read())
             bot_cevabi = result["candidates"][0]["content"]["parts"][0]["text"]
+            
+            gecmis.append({"role": "model", "parts": [{"text": bot_cevabi}]})
+            hafiza_kaydet(gecmis)
+            
+            return jsonify({"cevapi": bot_cevabi})
     except Exception as e:
-        return jsonify({"cevap": f"Hata: {str(e)}"})
+        return jsonify({"cevapi": f"Hata: {str(e)}"})
     gecmis.append({"role": "model", "parts": [{"text": bot_cevabi}]})
     hafiza_kaydet(gecmis)
     return jsonify({"cevap": bot_cevabi})
