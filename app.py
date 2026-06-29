@@ -24,15 +24,17 @@ def index():
 
 @app.route("/mesaj", methods=["POST"])
 def mesaj():
-    data = request.json
+  data = request.json
     kullanici_mesaji = data.get("mesaj", "")
     gecmis = hafiza_yukle()
     gecmis.append({"role": "user", "parts": [{"text": kullanici_mesaji}]})
     payload = json.dumps({"contents": gecmis}).encode("utf-8")
+    
     api_key = os.environ.get("GEMINI_API_KEY")
-    url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:content?key={api_key}"
+    url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key={api_key}"
+    
     headers = {
-        "Content-Type":"application/json",
+        "Content-Type": "application/json",
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"
     }
     
