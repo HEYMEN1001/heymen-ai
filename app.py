@@ -29,8 +29,14 @@ def mesaj():
     gecmis = hafiza_yukle()
     gecmis.append({"role": "user", "parts": [{"text": kullanici_mesaji}]})
     payload = json.dumps({"contents": gecmis}).encode("utf-8")
-    url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key={GEMINI_API_KEY}"
-    req = urllib.request.Request(url, data=payload, headers={"Content-Type": "application/json"})
+    api_key = os.environ.get("GEMINI_API_KEY")
+    url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:content?key={api_key}"
+    headers = {
+        "Content-Type":"application/json",
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"
+    }
+    
+    req = urllib.request.Request(url, data=payload, headers=headers)
     try:
         with urllib.request.urlopen(req) as response:
             result = json.loads(response.read())
