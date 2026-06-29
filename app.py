@@ -54,10 +54,10 @@ def mesaj():
             
             return jsonify({"cevap": bot_cevabi})
     except Exception as e:
-    hata = str(e)
-    if "429" in hata:
-        return jsonify({"cevap": "API limiti doldu veya çok hızlı mesaj attık. Biraz bekleyip tekrar dene."})
-    return jsonify({"cevap": f"Hata: {hata}"})
+        hata = str(e)
+        if "429" in hata:
+            return jsonify({"cevap": "API limiti doldu veya çok hızlı mesaj attık. Biraz bekleyip tekrar dene."})
+        return jsonify({"cevap": f"Hata: {hata}"})
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
