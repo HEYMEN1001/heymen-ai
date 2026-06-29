@@ -42,7 +42,7 @@ while True:
     gecmis.append({"role": "user", "parts": [{"text": kullanici_mesaji}]})
 
     response = client.models.generate_content(
-        model="gemini-2.5-flash",
+        model="gemini-1.5-flash",
         contents=gecmis,
         config={
             "system_instruction": sistem_talimati
