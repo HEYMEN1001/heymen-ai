@@ -22,7 +22,7 @@ def hafiza_kaydet(mesajlar):
 def index():
     return render_template("index.html")
 
-@app.route("https://heymen-ai.onrender.com/mesaj/mesaj", methods=["POST"])
+@app.route("https://heymen-ai.onrender.com/mesaj", methods=["POST"])
 def mesaj():
     data = request.json
     kullanici_mesaji = data.get("mesaj", "")
