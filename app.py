@@ -30,7 +30,7 @@ def mesaj():
     gecmis.append({"role": "user", "parts": [{"text": kullanici_mesaji}]})
     payload = json.dumps({"contents": gecmis}).encode("utf-8")
     api_key = os.environ.get("GEMINI_API_KEY")
-    url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:content?key={api_key}"
+    url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:content?key={api_key}"
     headers = {
         "Content-Type":"application/json",
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"
