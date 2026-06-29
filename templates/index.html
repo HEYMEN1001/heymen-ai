@@ -41,6 +41,7 @@
             })
             .then(function(res) { return res.json(); })
             .then(function(data) {
+                var sohbet = document.getElementById("sohbet");
                 sohbet.innerHTML += "<div class='bot'>Bot: " + data.cevap + "</div>";
                 sohbet.scrollTop = sohbet.scrollHeight;
             })
