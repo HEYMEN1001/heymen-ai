@@ -29,8 +29,9 @@ def mesaj():
     
     gecmis = hafiza_yukle()
     gecmis.append({"role": "user", "parts": [{"text": kullanici_mesaji}]})
-    
-    payload = json.dumps({"contents": gecmis}).encode("utf-8")
+    gemini_gecmis = gecmis[-8:]
+
+    payload = json.dumps({"contents": gemini_gecmis}).encode("utf-8")
     
     api_key = os.environ.get("GEMINI_API_KEY")
     model = "gemini-2.5-flash"
@@ -53,7 +54,10 @@ def mesaj():
             
             return jsonify({"cevap": bot_cevabi})
     except Exception as e:
-        return jsonify({"cevap": f"Hata: {str(e)}"})
+    hata = str(e)
+    if "429" in hata:
+        return jsonify({"cevap": "API limiti doldu veya çok hızlı mesaj attık. Biraz bekleyip tekrar dene."})
+    return jsonify({"cevap": f"Hata: {hata}"})
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
