@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Heymen AI</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { background: #1a1a2e; color: #eee; font-family: Arial; display: flex; flex-direction: column; align-items: center; padding: 20px; min-height: 100vh; }
+        h1 { color: #e94560; margin-bottom: 20px; }
+        #sohbet { width: 100%; max-width: 600px; height: 60vh; overflow-y: auto; background: #16213e; border-radius: 10px; padding: 15px; margin-bottom: 10px; }
+        .kullanici { text-align: right; color: #e94560; margin: 8px 0; }
+        .bot { text-align: left; background: #0f3460; border-radius: 8px; padding: 8px; margin: 8px 0; }
+        #input-alan { display: flex; gap: 10px; width: 100%; max-width: 600px; }
+        #mesaj { flex: 1; padding: 10px; border-radius: 8px; border: 2px solid #e94560; background: #16213e; color: #eee; font-size: 16px; }
+        button { padding: 10px 20px; background: #e94560; color: white; border: none; border-radius: 8px; font-size: 16px; }
+    </style>
+</head>
+<body>
+    <h1>🤖 Heymen AI</h1>
+    <div id="sohbet"></div>
+    <div id="input-alan">
+        <input id="mesaj" type="text" placeholder="Mesajını yaz...">
+        <button onclick="gonder()">Gönder</button>
+    </div>
+    <script>
+        document.getElementById("mesaj").addEventListener("keypress", function(e) {
+            if (e.key === "Enter") gonder();
+        });
+
+        function gonder() {
+            var mesaj = document.getElementById("mesaj").value.trim();
+            if (!mesaj) return;
+            var sohbet = document.getElementById("sohbet");
+            sohbet.innerHTML += "<div class='kullanici'>Sen: " + mesaj + "</div>";
+            document.getElementById("mesaj").value = "";
+            
+            fetch("/mesaj", {
+                method: "POST",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify({mesaj: mesaj})
+            })
+            .then(function(res) { return res.json(); })
+            .then(function(data) {
+                sohbet.innerHTML += "<div class='bot'>Bot: " + data.cevap + "</div>";
+                sohbet.scrollTop = sohbet.scrollHeight;
+            })
+            .catch(function(e) {
+                sohbet.innerHTML += "<div class='bot'>Hata: " + e.message + "</div>";
+            });
+        }
+    </script>
+</body>
+</html>

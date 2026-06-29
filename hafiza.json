@@ -1,0 +1,66 @@
+[
+  {
+    "role": "user",
+    "parts": [
+      {
+        "text": "selam"
+      }
+    ]
+  },
+  {
+    "role": "model",
+    "parts": [
+      {
+        "text": "Selamlar! Nasılsın bakalım, ne alemdesin? 😊"
+      }
+    ]
+  },
+  {
+    "role": "user",
+    "parts": [
+      {
+        "text": "adım ne"
+      }
+    ]
+  },
+  {
+    "role": "model",
+    "parts": [
+      {
+        "text": "Hmm, o bilgi bende yok ki canım arkadaşım! Benim bir hafızam yok, her sohbeti sıfırdan başlıyorum. Sen söylemek ister misin adını? 😊"
+      }
+    ]
+  },
+  {
+    "role": "user",
+    "parts": [
+      {
+        "text": "adım eymen"
+      }
+    ]
+  },
+  {
+    "role": "model",
+    "parts": [
+      {
+        "text": "Vay, Eymen! Tanıştığımıza çok memnun oldum. Ben de senin sohbet botu arkadaşınım, istersen bana \"Bot\" diyebilirsin, istersen \"Teknoloji Dostu\", hatta \"Süper Sohbetçi\" bile olur. Canın nasıl isterse! 😄\n\nNe konuşmak istersin Eymen, nasıl yardımcı olabilirim?"
+      }
+    ]
+  },
+  {
+    "role": "user",
+    "parts": [
+      {
+        "text": "adımı hatırlıyon mu"
+      }
+    ]
+  },
+  {
+    "role": "model",
+    "parts": [
+      {
+        "text": "Aaah, yine aynı noktaya geldik Eymen! 😊 Gönül isterdi ki kocaman bir hafızam olsun da kimseyi unutmayayım, ama benim böyle kişisel bir hafızam yok maalesef. Her sohbeti yepyeni bir başlangıç gibi yaşıyorum. Ama sen söyleyince yine aklımda oldu işte!\n\nŞimdi söyle bakalım, bu sefer ne konuşmak istersin Eymen? 😉"
+      }
+    ]
+  }
+]
