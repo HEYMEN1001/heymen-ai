@@ -33,7 +33,8 @@ def mesaj():
     payload = json.dumps({"contents": gecmis}).encode("utf-8")
     
     api_key = os.environ.get("GEMINI_API_KEY")
-    url = f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent?key={api_key}"
+model = "gemini-2.5-flash"
+url = f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent?key={api_key}"
     
     headers = {
         "Content-Type": "application/json",
